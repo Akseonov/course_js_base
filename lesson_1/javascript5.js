@@ -14,7 +14,7 @@ let num4 = parseInt((+ticket % 1000) / 100);
 // console.log(num4);
 let num5 = parseInt((+ticket % 100) / 10);
 // console.log(num5);
-let num6 = parseInt(+ticket % 10);
+let num6 = +ticket % 10;
 // console.log(num6);
 
 let leftSum = num1 + num2 + num3;
