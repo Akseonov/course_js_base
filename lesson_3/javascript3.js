@@ -12,8 +12,9 @@ xxxxxxxxx
 */
 
 'use strict';
+
 let mount = 'x';
-for (let i = 0; i <20 ; i++ ) {
+for (let i = 0; i < 20; i++) {
     console.log(mount);
     mount += 'xx';
 }
