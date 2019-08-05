@@ -92,22 +92,98 @@ const game = {
         this.questionNum = 0;
     },
 
+    /**
+     * Метод запуска игры
+     */
     run() {
         this.initialization();
         alert('Приветствуем вас в игре "Кто хочет стать миллионером!"');
 
-        //получение прпавильного ответа от пользователя
+        while (true) {
+            //получение ответа от пользователя
+            const answer = this.getAnswer();
 
-        //проверка на выход из игры
+            //проверка на выход из игры
+            if (answer === -1) {
+                alert('Всего хорошего!');
+                break;
+            }
+            //проверка правильного ответа
+            if (answer === this.questions[this.questionNum].correctAnswer) {
+                alert('Вы ответили правильно!');
+                this.numOfCorrAnswers++;
+            } else {
+                alert('Вы ответили неправильно.');
+            }
 
-        //проверка правильного ответа
+            this.questionNum++;
 
-        this.questionNum++;
+            //если игра закончилась
+            if (this.questionNum > 4) {
+                alert(`Игра закончена!\nВы ответили правильно на ${this.numOfCorrAnswers} вопросов`);
 
-        //если игра закончилась
+                if (!confirm('Не хотите сыграть еще раз?')) {
+                    break;
+                }
+
+                this.initialization();
+            }
+        }
     },
 
+    /**
+     * Метод получения ответа от пользователя
+     * @returns {number} возвращает ответ в виде числа
+     */
     getAnswer() {
-        let answer = +promt()
+        while (true) {
+            let answer = prompt(this.getQuestionLine());
+
+            if (answer === null) {
+                alert('Если вы хотите выйти из игры введите "-1".');
+                continue;
+            }
+
+            answer = answer.trim();
+
+            answer = parseInt(answer);
+
+            if (!this.checkAnswer(answer)) {
+                alert('Вы должны ввести один из предложенных ответов.');
+                continue;
+            }
+
+            return answer;
+        }
+    },
+
+    /**
+     * Метод формирования строки с вопросом и ответами
+     * @returns {string} возвращает строку с вопросом и ответами
+     */
+    getQuestionLine() {
+        const question = this.questions[this.questionNum];
+
+        let questionLine = `Вопрос № ${this.questionNum + 1}: \n${question.questText} 
+        \n Варианты ответов: \n`;
+
+        for (const brForce in question.answers) {
+            if (question.answers.hasOwnProperty(brForce)) {
+                questionLine += `   ${brForce}: ${question.answers[brForce]} \n`;
+            }
+        }
+        return questionLine;
+    },
+
+    /**
+     * Метод проверки введеного значение на наличие такого значения
+     * @param answer {number} число введеное пользователем
+     * @returns {boolean} возврачает true или false
+     */
+    checkAnswer(answer) {
+        const currAnswers = [-1, 1, 2, 3, 4];
+        return currAnswers.includes(answer);
     }
 };
+
+game.run();

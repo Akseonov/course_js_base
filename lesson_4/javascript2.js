@@ -70,19 +70,19 @@ const player = {
                 nextPos.y--;
                 break;
             case 1:
-                nextPos.y++;
+                nextPos.y--;
                 nextPos.x--;
                 break;
             case 3:
-                nextPos.y++;
+                nextPos.y--;
                 nextPos.x++;
                 break;
             case 7:
-                nextPos.y--;
+                nextPos.y++;
                 nextPos.x--;
                 break;
             case 9:
-                nextPos.y--;
+                nextPos.y++;
                 nextPos.x++;
                 break;
         }
