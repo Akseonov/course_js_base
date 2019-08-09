@@ -12,7 +12,17 @@ const chess = {
     generationChess() {
         const cols = ['a', 'b', 's', 'd', 'e', 'f', 'g', 'h'];
 
-        const rows = [1, 2, 3, 4, 5, 6, 7, 8];
+        const rows = [8, 7, 6, 5, 4, 3, 2, 1];
+
+        const chessFiguresBlack = ['&#x265c', '&#x265e', '&#x265d', '&#x265b',
+            '&#x265a', '&#x265d', '&#x265e', '&#x265c'];
+
+        const chessBlackPawn = ['&#x265f'];
+
+        const chessFiguresWhite = ['&#x2656', '&#x2658', '&#x2657', '&#x2655',
+            '&#x2654', '&#x2657', '&#x2658', '&#x2656'];
+
+        const chessWhitePawn = ['&#x2659'];
 
         //составляем таблицу
         for (let i = 0; i < 10; i++) {
@@ -33,7 +43,15 @@ const chess = {
                     td.style.backgroundColor = '#d4d4d4';
                 }
 
-
+                if (i === 1 && j !== 0 && j !== 9) {
+                    td.innerHTML = chessFiguresBlack[j - 1];
+                } else if (i === 2 && j !== 0 && j !== 9) {
+                    td.innerHTML = chessBlackPawn[0];
+                } else if (i === 8 && j !== 0 && j !== 9) {
+                    td.innerHTML = chessFiguresWhite[j - 1];
+                } else if (i === 7 && j !== 0 && j !== 9) {
+                    td.innerHTML = chessWhitePawn[0];
+                }
             }
         }
 
@@ -43,14 +61,18 @@ const chess = {
         return (row === 0 || row === 9) && (col !== 0 && col !== 9);
     },
 
+    // arrangeFiguresBlack(row, col) {
+    //     return ((row === 1 || row === 2) && (col !== 0 && col !== 9));
+    // },
+
     checkFirstLastCol(row, col) {
         return (row !== 0 && row !== 9) && (col === 0 || col === 9);
     },
 
     checkBlack(row, col) {
-        return ((row % 2 === 1 && col % 2 === 1) || (row % 2 === 0 && col % 2 === 0)) &&
+        return ((row % 2 === 1 && col % 2 === 0) || (row % 2 === 0 && col % 2 === 1)) &&
             ((row !== 0 && row !== 9) && (col !== 0 && col !== 9));
-    }
+    },
 };
 
 chess.generationChess();
