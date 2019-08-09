@@ -26,14 +26,13 @@ const chess = {
                 const td = document.createElement('td');
                 tr.appendChild(td).classList.add('chessTd');
 
-                if ((i === 0 || i === 9) && (j !== 0 && j !== 9)) {
+                if (this.checkFirstLastRow(i, j)) {
                     td.innerHTML = cols[j - 1];
-                } else if ((i !== 0 && i !== 9) && (j === 0 || j === 9)) {
+                } else if (this.checkFirstLastCol(i, j)) {
                     td.innerHTML = rows[i - 1];
                 }
 
-                if (((i % 2 === 1 && j % 2 === 0) || (i % 2 === 0 && j % 2 === 1)) &&
-                ((i !== 0 && i !== 9) && (j !==0 && j !== 9))) {
+                if (this.checkBlack(i, j)) {
                     td.style.backgroundColor = '#d4d4d4';
                 }
 
@@ -41,6 +40,19 @@ const chess = {
             }
         }
 
+    },
+
+    checkFirstLastRow(row, col) {
+        return (row === 0 || row === 9) && (col !== 0 && col !== 9);
+    },
+
+    checkFirstLastCol(row, col) {
+        return (row !== 0 && row !== 9) && (col === 0 || col === 9);
+    },
+
+    checkBlack(row, col) {
+        return ((row % 2 === 1 && col % 2 === 0) || (row % 2 === 0 && col % 2 === 1)) &&
+            ((row !== 0 && row !== 9) && (col !== 0 && col !== 9));
     }
 };
 
