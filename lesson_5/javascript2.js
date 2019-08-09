@@ -10,7 +10,7 @@ const chess = {
     gameTable: document.getElementById('table'),
 
     generationChess() {
-        const cols = ['a', 'b', 's', 'd', 'e', 'f', 'g', 'h'];
+        const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
         const rows = [8, 7, 6, 5, 4, 3, 2, 1];
 
@@ -60,10 +60,6 @@ const chess = {
     checkFirstLastRow(row, col) {
         return (row === 0 || row === 9) && (col !== 0 && col !== 9);
     },
-
-    // arrangeFiguresBlack(row, col) {
-    //     return ((row === 1 || row === 2) && (col !== 0 && col !== 9));
-    // },
 
     checkFirstLastCol(row, col) {
         return (row !== 0 && row !== 9) && (col === 0 || col === 9);
