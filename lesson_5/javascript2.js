@@ -7,7 +7,7 @@
 'use strict';
 
 const chess = {
-    gameTable: document.getElementById('table'),
+    gameTable: document.getElementById('chess__table'),
 
     generationChess() {
         const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
@@ -31,7 +31,7 @@ const chess = {
 
             for (let j = 0; j < 10; j++) {
                 const td = document.createElement('td');
-                tr.appendChild(td).classList.add('chessTd');
+                tr.appendChild(td).classList.add('chess__td');
 
                 if (this.checkFirstLastRow(i, j)) {
                     td.innerHTML = cols[j - 1];
@@ -40,7 +40,7 @@ const chess = {
                 }
 
                 if (this.checkBlack(i, j)) {
-                    td.style.backgroundColor = '#d4d4d4';
+                    td.classList.add('chess__td_black');
                 }
 
                 if (i === 1 && j !== 0 && j !== 9) {

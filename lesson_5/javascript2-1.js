@@ -8,7 +8,7 @@
 
 const chess = {
 
-    gameTable: document.getElementById('table'),
+    gameTable: document.getElementById('chess__table'),
 
     figures: [
         {name: 'p', color: 'w', position: 'a2'},
@@ -74,7 +74,7 @@ const chess = {
 
             for (let j = 0; j < 10; j++) {
                 const td = document.createElement('td');
-                tr.appendChild(td).classList.add('chessTd');
+                tr.appendChild(td).classList.add('chess__td');
 
                 td.dataset.row = rows[i].toString();
                 td.dataset.col = cols[j].toString();
@@ -86,7 +86,7 @@ const chess = {
                 }
 
                 if (this.checkBlack(i, j)) {
-                    td.style.backgroundColor = '#d4d4d4';
+                    td.classList.add('chess__td_black');
                 }
             }
         }
