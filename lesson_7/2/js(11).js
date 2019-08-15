@@ -355,45 +355,28 @@ const status = {
   },
 };
 
-/**
- * Объект счетчика. Подсчитывает очки пользователя.
- * @property {int} count Очки пользователя.
- * @property {HTMLElement} countEl DOM-элемент для вставки числа отображающего количество очков пользователя.
- */
-const score = {
+const count = {
   count: null,
-  countEl: null,
+  countElem: null,
 
-  /**
-   * Инициализацирует счетчик.
-   */
   init() {
-    this.countEl = document.getElementById('score-count');
-    this.drop();
+    this.countElem = document.getElementById('score-count');
+    this.clear();
   },
 
-  /**
-   * Инкрементирует счетчик.
-   */
-  increment() {
-    this.count++;
-    this.render();
-  },
-
-  /**
-   * Сбрасывает счетчик.
-   */
-  drop() {
+  clear() {
     this.count = 0;
-    this.render();
+    this.display();
   },
 
-  /**
-   * Отображает количество очков пользователю.
-   */
-  render() {
-    this.countEl.textContent = this.count;
-  }
+  countInc() {
+    this.count++;
+    this.display();
+  },
+
+  display() {
+    this.countElem.textContent = this.count;
+  },
 };
 
 /**
@@ -403,7 +386,6 @@ const score = {
  * @property {snake} snake Объект змейки.
  * @property {food} food Объект еды.
  * @property {status} status Статус игры.
- * @property {score} score Счетчик игры.
  * @property {int} tickInterval Номер интервала игры.
  */
 const game = {
@@ -412,7 +394,7 @@ const game = {
   snake,
   food,
   status,
-  score,
+  count,
   tickInterval: null,
 
   /**
@@ -433,8 +415,7 @@ const game = {
     }
     // Инициализируем карту.
     this.map.init(this.config.getRowsCount(), this.config.getColsCount());
-    // Инициализируем счетчик.
-    this.score.init();
+    this.count.init();
     // Устанавливаем обработчики событий.
     this.setEventHandlers();
     // Ставим игру в начальное положение.
@@ -447,9 +428,8 @@ const game = {
   reset() {
     // Ставим статус игры в "остановлена".
     this.stop();
-    // Сбрасываем счетчик.
-    this.score.drop();
     // Инициализируем змейку.
+    this.count.clear();
     this.snake.init(this.getStartSnakeBody(), 'up');
     // Ставим еду на карту в случайную пустую ячейку.
     this.food.setCoordinates(this.getRandomFreeCoordinates());
@@ -505,9 +485,8 @@ const game = {
     if (this.food.isOnPoint(this.snake.getNextStepHeadPoint())) {
       // Прибавляем к змейке ячейку.
       this.snake.growUp();
-      // Инкрементируем счетчик.
-      this.score.increment();
       // Ставим еду в свободную ячейку.
+      this.count.countInc();
       this.food.setCoordinates(this.getRandomFreeCoordinates());
       // Если выиграли, завершаем игру.
       if (this.isGameWon()) {
@@ -684,6 +663,8 @@ const game = {
       nextHeadPoint.y >= 0;
   },
 };
+
+
 
 // При загрузке страницы инициализируем игру.
 window.onload = game.init({speed: 5});

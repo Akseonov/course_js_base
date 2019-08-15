@@ -26,14 +26,14 @@
 td.cell{
     width: 20px;
     height: 20px;
-    border: 1px dotted #eee;
+    border: 1px solid #a5a5a5;
     border-collapse: collapse;
 }
 .food{
     background: #00d021;
 }
 .snakeBody{
-    background: #e5e5e5;
+    background: #d00014;
 }
 .snakeHead{
     background: #9b0013;
@@ -43,11 +43,4 @@ td.cell{
 }
 .disabled:hover{
     background: #7c7c7c;
-}
-#game-score {
-    margin-top: 1%;
-    text-align: center;
-    font-family: "Lobster", serif;
-    font-size: 2em;
-    color: #d40019;
 }
