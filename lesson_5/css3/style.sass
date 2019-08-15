@@ -1,0 +1,44 @@
+*
+  padding: 0
+  margin: 0
+
+.conteiner
+  display: flex
+  justify-content: center
+
+.form
+  padding: 20px
+
+  &__up, &__down
+    margin-bottom: 30px
+
+  &__input
+    margin-right: 30px
+    padding: 10px
+    width: 250px
+    border: 1px solid #d4d4d4
+    border-radius: 5px
+    outline: none
+
+    &_valid
+      border: 1px solid #56d55f
+
+    &_invalid
+      border: 1px solid #d5483c
+
+  &__feedback
+    color: #d5483c
+
+  &__button
+    padding: 10px 20px
+    border-radius: 5px
+    border: 1px solid #d4d4d4
+    color: #898989
+    background-color: #fff
+    outline: none
+
+    &:hover
+      color: #fff
+      background-color: #56d55f
+      border: 1px solid #fff
+

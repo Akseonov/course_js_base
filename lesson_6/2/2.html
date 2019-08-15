@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="javascript2.js" async></script>
+</head>
+<body>
+    <div class="catalog">
+        <div class="catalog__container">
+            <article class="catalog__item">
+                <img src="img/Glock_17.jpg" alt="Glock 17">
+                80 000 руб.
+                <button class="catalog__button" data-price="80000" data-name="glock">купить</button>
+            </article>
+            <article class="catalog__item">
+                <img src="img/CZ-75.png" alt="cz 75">
+                50 000 руб.
+                <button class="catalog__button" data-price="50000" data-name="cz">купить</button>
+            </article>
+            <article class="catalog__item">
+                <img src="img/strig.jpg" alt="strig">
+                30 000 руб.
+                <button class="catalog__button" data-price="30000" data-name="strig">купить</button>
+            </article>
+        </div>
+        <div class="basket">
+            <div class="basket__price">
+                Количество товара: <span id="basket__count">0</span> шт
+                Итоговая цена: <span id="basket__finalPrice">0</span> руб.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
